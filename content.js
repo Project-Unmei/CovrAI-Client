@@ -232,12 +232,7 @@
                 }
             }
 
-            data.DATA.TITLE = data.JobTitle;
-            data.DATA.COMPANY = data.Company;
-            data.DATA.JOB_SUM = data.Summary;
-            data.DATA.JOB_RESP = data.Responsibilities;
-            data.DATA.REQ_SKILL = data.Skills;
-
+            
 
             let dashboardHeader = document.getElementsByClassName('dashboard-header__profile-information')[0];
             let dashboardHeaderH1 = dashboardHeader.getElementsByTagName('h1')[0].innerHTML;
@@ -247,13 +242,20 @@
             dashboardHeaderH2 = dashboardHeaderH2.replace(/[\r\n\t]/g, "");
 
             data.UID = dashboardHeaderH1.substring(0, dashboardHeaderH1.indexOf('-')).trim();
-            data.Position = dashboardHeaderH1.substring(dashboardHeaderH1.indexOf('-') + 1).trim();
-            data.Company = dashboardHeaderH2.trim();
+            data.Position = dashboardHeaderH1.substring(dashboardHeaderH1.indexOf('-') + 1).trim().split(',')[0].split(' - ')[0];
+            data.Company = dashboardHeaderH2.substring(0, dashboardHeaderH2.indexOf(' - ')).trim();
+            
+            data.DATA.TITLE = data.Position;
+            data.DATA.COMPANY = data.Company;
+            data.DATA.JOB_SUM = data.Summary;
+            data.DATA.JOB_RESP = data.Responsibilities;
+            data.DATA.REQ_SKILL = data.Skills;
 
-            console.log(data);
+            console.log(data.Position);
+            console.log(data.Company);
 
             let xhr = new XMLHttpRequest();
-            let url = "http://127.0.0.1:6969";
+            let url = "http://127.0.0.1:6969/api/cv/generate";
             let response;
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
