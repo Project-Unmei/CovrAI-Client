@@ -242,7 +242,7 @@
             dashboardHeaderH2 = dashboardHeaderH2.replace(/[\r\n\t]/g, "");
 
             data.UID = dashboardHeaderH1.substring(0, dashboardHeaderH1.indexOf('-')).trim();
-            data.Position = dashboardHeaderH1.substring(dashboardHeaderH1.indexOf('-') + 1).trim().split(',')[0].split(' - ')[0];
+            data.Position = dashboardHeaderH1.substring(dashboardHeaderH1.indexOf('-') + 1).trim().split(',')[0].split(' - ')[0].split('/')[0];
             data.Company = dashboardHeaderH2.substring(0, dashboardHeaderH2.indexOf(' - ')).trim();
             
             data.DATA.TITLE = data.Position;
