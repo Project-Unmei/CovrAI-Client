@@ -7,27 +7,25 @@
 
 (() => {
     chrome.runtime.onMessage.addListener((request, sender, response) => {
-
-        console.log('content.js received message');
+        console.log('Extension loaded and customized for \"WaterlooWorks\"');
 
         const { type } = request;
-
         console.log(type);
 
         if (type === "NEW") {
-            console.log('content.js received NEW message');
+            console.log('Extension received NEW Message.');
 
-            const containaaaa = document.getElementsByClassName('aaaa')[0];
-            const containpostingDiv = document.getElementById('postingDiv');
+            const cont_aaaa = document.getElementsByClassName('aaaa')[0];
+            const cont_postingDiv = document.getElementById('postingDiv');
 
-            // tab loaded is coop posting list
-            if(containaaaa){
+            // tab loaded is job-posting-list
+            if (cont_aaaa) {
                 console.log('coop posting list loaded');
                 addCheckBoxes();
             }
 
-            // tab loaded is coop job posting
-            else if(containpostingDiv){
+            // tab loaded is job-posting
+            else if (cont_postingDiv) {
                 console.log('coop job posting loaded');
                 addGenButton();
             }
@@ -80,7 +78,7 @@
 
         let newButton = document.createElement('button');
         newButton.innerHTML = 'Generate Cover Letter';
-        newButton.id = 'CovGenButton';
+        newButton.id = 'CVGenButton';
         newButton.classList.add('btn__default--text');
         newButton.classList.add('btn--default');
         newButton.type = 'button';
