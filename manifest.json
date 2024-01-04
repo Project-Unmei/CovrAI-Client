@@ -21,14 +21,14 @@
     "128": "/images/icon128.png"
   },
   "permissions": [
-    "system.storage",
+    //"system.storage",
     "storage",
     "tabs",
-    "webNavigation",
-    "*//waterlooworks.uwaterloo.ca/*"
+    "webNavigation"
   ],
   "host_permissions": [
-    "*//waterlooworks.uwaterloo.ca/*"
+    "*://waterlooworks.uwaterloo.ca/*",
+    "*://*.linkedin.com/*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -36,8 +36,8 @@
   "content_scripts": [
     {
       "matches": ["https://waterlooworks.uwaterloo.ca/*"],
-      "js": ["content.js"],
-      "css": ["content.css"],
+      "js": ["module/waterlooworks/content.js"],
+      "css": ["module/waterlooworks/content.css"],
       "run_at": "document_end"
     },
     {

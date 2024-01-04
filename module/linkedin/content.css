@@ -1,0 +1,19 @@
+#CVGenButton {
+    color: var(--color-action);
+    border-radius: var(--corner-radius-xlarge) !important;
+    padding-left: 2rem !important;
+    margin-left: 1rem !important;
+    padding-right: 2rem !important;
+    box-shadow: inset 0 0 0 1px var(--color-action);
+    font-weight: 600 !important;
+    font-size: inherit;
+
+    transition: box-shadow 0.15s ease-in-out;
+    transition: background-color 0.15s ease-in-out;
+}
+
+#CVGenButton:hover {
+    background-color: var(--color-background-none-tint-action-hover);
+    color: var(--color-action);
+    box-shadow: inset 0 0 0 2px var(--color-action);
+}

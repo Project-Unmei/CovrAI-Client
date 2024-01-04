@@ -2,18 +2,19 @@
 
 // Module Lead  - Leo Chai (TheLeoChai)
 // Contributors - N/A
+let extName = "[ AutoCV ]"
+let pageName = "WaterlooWorks";
 
 
 
 (() => {
     chrome.runtime.onMessage.addListener((request, sender, response) => {
-        console.log('Extension loaded and customized for \"WaterlooWorks\"');
-
+        console.log(`${extName} Extension loaded and customized for \"${pageName}\"`);
         const { type } = request;
-        console.log(type);
+
 
         if (type === "NEW") {
-            console.log('Extension received NEW Message.');
+            console.log(`${extName} Extension received NEW Message.`);
 
             const cont_aaaa = document.getElementsByClassName('aaaa')[0];
             const cont_postingDiv = document.getElementById('postingDiv');
@@ -236,7 +237,7 @@
             }
 
             
-
+            // Fetching main block of WaterlooWorks Content
             let dashboardHeader = document.getElementsByClassName('dashboard-header__profile-information')[0];
             let dashboardHeaderH1 = dashboardHeader.getElementsByTagName('h1')[0].innerHTML;
             let dashboardHeaderH2 = dashboardHeader.getElementsByTagName('h2')[0].innerHTML;
