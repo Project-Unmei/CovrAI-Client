@@ -36,15 +36,15 @@
   "content_scripts": [
     {
       "matches": ["https://waterlooworks.uwaterloo.ca/*"],
-      "js": ["module/waterlooworks/content.js"],
+      "js": ["helper.js", "module/waterlooworks/content.js"],
       "css": ["module/waterlooworks/content.css"],
       "run_at": "document_end"
     },
     {
       "matches": ["https://www.linkedin.com/jobs/*"],
-      "js": ["module/linkedin/content.js"],
+      "js": ["helper.js", "module/linkedin/content.js"],
       "css": ["module/linkedin/content.css"],
-      "run_at": "document_end"
+      "run_at": "document_idle"
     }
   ],
   "author": "me@leochai.com"

@@ -253,7 +253,7 @@ let pageName = "WaterlooWorks";
             data.DATA.COMPANY = data.Company;
             data.DATA.JOB_SUM = data.Summary;
             data.DATA.JOB_RESP = data.Responsibilities;
-            data.DATA.REQ_SKILL = data.Skills;
+            data.DATA.JOB_SKILL = data.Skills;
 
             console.log(data.Position);
             console.log(data.Company);
@@ -283,8 +283,6 @@ let pageName = "WaterlooWorks";
             };
             
             xhr.send(JSON.stringify(data));
-
-            
         };
 
         dashboardHeaderDiv.appendChild(newButton);
