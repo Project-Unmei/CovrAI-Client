@@ -112,14 +112,14 @@ let pageName = "WaterlooWorks";
 
 
             var data = {
-                "IUD": "",
+                "UID": "",
                 "TYPE": "gpt",
                 "DATA": {
                     "TITLE": "",
                     "COMPANY": "",
                     "JOB_SUM": "",
                     "JOB_RESP": "",
-                    "REQ_SKILL": ""
+                    "JOB_SKILL": ""
                 },
                 "WorkTerm": "",
                 "JobType": "",
@@ -283,6 +283,8 @@ let pageName = "WaterlooWorks";
             };
             
             xhr.send(JSON.stringify(data));
+
+            
         };
 
         dashboardHeaderDiv.appendChild(newButton);
