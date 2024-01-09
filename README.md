@@ -1,4 +1,4 @@
-# Risshun-Web
+# Risshun-Client
 Chromium extension for generating keywords for cover letter generation. Sends JSON to server for CV generation.
 
 - JSON generation is handled in content.js for each website, everything in content.js runs on the browser whenever a hard-coded module for an website load.
