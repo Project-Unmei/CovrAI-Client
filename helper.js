@@ -1,3 +1,15 @@
+var outPackage = {
+    "UID": "",
+    "TYPE": "gpt",
+    "DATA": {
+        "TITLE": "",
+        "COMPANY": "",
+        "JOB_SUM": "",
+        "JOB_RESP": "",
+        "REQ_SKILL": ""
+    }
+};
+
 function format_and_send_data(data) {
     // Formatting final HTTP package
     let xhr = new XMLHttpRequest();
@@ -26,4 +38,24 @@ function format_and_send_data(data) {
 
     // Sending JSON package to server
     xhr.send(JSON.stringify(data));
+}
+
+function waitForElm(selector) {
+    return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(mutations => {
+            if (document.querySelector(selector)) {
+                observer.disconnect();
+                resolve(document.querySelector(selector));
+            }
+        });
+        
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
 }

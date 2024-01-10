@@ -3,7 +3,7 @@
 // Module Lead - Tim Yang (thryang)
 // Contributors - N/A
 let extName = "[ AutoCV ]"
-let pageName = "LinkedIn";
+let pageName = "Indeed Canada";
 
 (() => {
     // Listerner for events and customization to fit specific source
@@ -16,46 +16,29 @@ let pageName = "LinkedIn";
             console.log(`${extName} Extension received NEW Message.`);
             
             // Checking if the job details section exists
-            const cont_jobDetails = document.getElementsByClassName('jobs-details__main-content')[0];
-
-            // tab loaded is job-posting
-            if (cont_jobDetails) {
-                console.log(`${extName} Job Details Section Found`); 
-                addGenButton();
-            };
+            waitForElm('.jobsearch-ViewJobButtons-container').then((elm) => {
+                console.log(`${extName} Extension is ready.`);
+            });
         }
     });
 
     // Adds button for server request
     const addGenButton = () => {
         // Getting palcement for element button
-        var linkedInApplySection = document.getElementsByClassName('mt5')[0];
-        var linkedInApplyDiv = linkedInApplySection.children[0];
+        var applyDiv = document.getElementById('jobsearch-ViewJobButtons-container')[0];
 
         // Creation of new static button for CV generation
         let newButton = document.createElement('button');
 
         // Setting button attributes
         newButton.innerHTML = 'Generate CV';
-        newButton.classList.add('btn_default--texxt');
+        newButton.id = 'Risshun-Button';
+        newButton.classList.add('btn_default--text');
         newButton.classList.add('btn--default');
         newButton.type = 'button';
 
         newButton.onclick = function() {
             console.log(`${extName} CV Generation Click Registered.`);
-
-            // Defining JSON Data Formatting:
-            var outPackage = {
-                "UID": "",
-                "TYPE": "gpt",
-                "DATA": {
-                    "TITLE": "",
-                    "COMPANY": "",
-                    "JOB_SUM": "",
-                    "JOB_RESP": "",
-                    "REQ_SKILL": ""
-                }
-            };
             
             let urlArray = window.location.href.split("=");
             outPackage.UID = urlArray[urlArray.length - 1];
@@ -99,18 +82,9 @@ let pageName = "LinkedIn";
         let prevButton = document.getElementById('CVGenButton-OnReload');
         if (prevButton) prevButton.remove();
 
-        // Appending the button to beside the Apply button on LinkedIn
-        // Check if linkedInApplyDiv exists        
-        try {
-            newButton.id = 'CVGenButton';
-            linkedInApplyDiv.appendChild(newButton);
-        } catch( err ) {
-            // Bugs towards newly generated pages, as obtaining the child div of mt5 is not possible
-            // Sepcifically the HTMLCollection is empty but has content somehow, tempfix implemented
-            console.warn(`${extName} Bug: Temporary Fix for Button Placement Utilized.`);
-            newButton.id = 'CVGenButton-OnReload';
-            linkedInApplySection.appendChild(newButton);
-        };
+        // Adds the completed button to applyDiv
+        applyDiv.appendChild(newButton);
+        console.log(f`{extName} Risshun Button Added`)
     };
 })();
 

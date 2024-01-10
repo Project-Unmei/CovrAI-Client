@@ -13,4 +13,10 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) =>{
         console.log("LinkedIn Job Positing Page");
         chrome.tabs.sendMessage(tabId, { type: 'NEW' });
     }
+
+    if (tab.url.includes("ca.indeed.com") 
+            && changeInfo.status === 'complete') {
+        console.log("Indeed Canada Page");
+        chrome.tabs.sendMessage(tabId, { type: 'NEW' });
+    }
 });

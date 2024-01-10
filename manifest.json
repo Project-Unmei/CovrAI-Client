@@ -45,6 +45,12 @@
       "js": ["helper.js", "module/linkedin/content.js"],
       "css": ["module/linkedin/content.css"],
       "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://ca.indeed.com/*"],
+      "js": ["helper.js", "module/indeed-ca/content.js"],
+      "css": ["module/indeed-ca/content.css"],
+      "run_at": "document_idle"
     }
   ],
   "author": "me@leochai.com"

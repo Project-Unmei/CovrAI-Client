@@ -28,6 +28,10 @@ let pageName = "LinkedIn";
 
     // Adds button for server request
     const addGenButton = () => {
+        // Checks that generation button does not yet exist
+        const checkGenButton = document.getElementById('CVGenButton');
+        if (checkGenButton) return;
+
         // Getting palcement for element button
         var linkedInApplySection = document.getElementsByClassName('mt5')[0];
         var linkedInApplyDiv = linkedInApplySection.children[0];
@@ -43,19 +47,6 @@ let pageName = "LinkedIn";
 
         newButton.onclick = function() {
             console.log(`${extName} CV Generation Click Registered.`);
-
-            // Defining JSON Data Formatting:
-            var outPackage = {
-                "UID": "",
-                "TYPE": "gpt",
-                "DATA": {
-                    "TITLE": "",
-                    "COMPANY": "",
-                    "JOB_SUM": "",
-                    "JOB_RESP": "",
-                    "REQ_SKILL": ""
-                }
-            };
             
             let urlArray = window.location.href.split("=");
             outPackage.UID = urlArray[urlArray.length - 1];
