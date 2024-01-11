@@ -19,10 +19,10 @@ let pageName = "LinkedIn";
             const cont_jobDetails = document.getElementsByClassName('jobs-details__main-content')[0];
 
             // tab loaded is job-posting
-            if (cont_jobDetails) {
-                console.log(`${extName} Job Details Section Found`); 
+            waitForElm('.mt5').then((elm) => {
+                console.log(`${extName} Extension is ready.`);
                 addGenButton();
-            };
+            });
         }
     });
 
@@ -96,21 +96,12 @@ let pageName = "LinkedIn";
 
 
         // Remove all previous instances of the button
-        let prevButton = document.getElementById('CVGenButton-OnReload');
-        if (prevButton) prevButton.remove();
-
-        // Appending the button to beside the Apply button on LinkedIn
-        // Check if linkedInApplyDiv exists        
-        try {
-            newButton.id = 'CVGenButton';
-            linkedInApplyDiv.appendChild(newButton);
-        } catch( err ) {
-            // Bugs towards newly generated pages, as obtaining the child div of mt5 is not possible
-            // Sepcifically the HTMLCollection is empty but has content somehow, tempfix implemented
-            console.warn(`${extName} Bug: Temporary Fix for Button Placement Utilized.`);
-            newButton.id = 'CVGenButton-OnReload';
-            linkedInApplySection.appendChild(newButton);
-        };
+        //let prevButtonOnReload = document.getElementById('CVGenButton-OnReload');
+        //if (prevButtonOnReload) prevButtonOnReload.remove();
+        //let prevButton = document.getElementById('CVGenButton');
+        //if (prevButton) prevButton.remove();
+        newButton.id = 'Rizzshun-Button';
+        linkedInApplySection.appendChild(newButton);
     };
 })();
 

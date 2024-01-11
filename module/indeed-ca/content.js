@@ -16,8 +16,9 @@ let pageName = "Indeed Canada";
             console.log(`${extName} Extension received NEW Message.`);
             
             // Checking if the job details section exists
-            waitForElm('.jobsearch-ViewJobButtons-container').then((elm) => {
+            waitForElm('#jobsearch-ViewJobButtons-container').then((elm) => {
                 console.log(`${extName} Extension is ready.`);
+                addGenButton();
             });
         }
     });
@@ -25,7 +26,7 @@ let pageName = "Indeed Canada";
     // Adds button for server request
     const addGenButton = () => {
         // Getting palcement for element button
-        var applyDiv = document.getElementById('jobsearch-ViewJobButtons-container')[0];
+        var applyDiv = document.getElementById('jobsearch-ViewJobButtons-container');
 
         // Creation of new static button for CV generation
         let newButton = document.createElement('button');
@@ -84,7 +85,7 @@ let pageName = "Indeed Canada";
 
         // Adds the completed button to applyDiv
         applyDiv.appendChild(newButton);
-        console.log(f`{extName} Risshun Button Added`)
+        console.log(`${extName} Risshun Button Added`)
     };
 })();
 
