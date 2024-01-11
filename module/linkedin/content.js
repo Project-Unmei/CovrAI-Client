@@ -98,8 +98,9 @@ let pageName = "LinkedIn";
         // Remove all previous instances of the button
         //let prevButtonOnReload = document.getElementById('CVGenButton-OnReload');
         //if (prevButtonOnReload) prevButtonOnReload.remove();
-        //let prevButton = document.getElementById('CVGenButton');
-        //if (prevButton) prevButton.remove();
+        let prevButton = document.getElementById('Rizzshun-Button');
+        if (prevButton) prevButton.remove();
+
         newButton.id = 'Rizzshun-Button';
         linkedInApplySection.appendChild(newButton);
     };
