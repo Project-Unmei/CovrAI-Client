@@ -21,7 +21,6 @@
     "128": "/images/icon128.png"
   },
   "permissions": [
-    //"system.storage",
     "storage",
     "tabs",
     "webNavigation"
