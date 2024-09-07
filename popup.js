@@ -29,3 +29,22 @@ newSkillForm.addEventListener('submit', (e) => {
         
     
 });
+
+let dpKForm = document.getElementById('dpKButton');
+
+dpKForm.addEventListener('click', (e) => {
+    console.log("clicked");
+    e.preventDefault();
+    let dpKval = document.getElementById("dpK").value;
+    chrome.storage.sync.set({dpK: dpKval}).then((result) => {
+        console.log("dpset");
+        document.getElementById("dpK").val("");
+    });
+})
+
+
+let extract = document.getElementById('extract');
+
+extract.addEventListener('click', (e) => {
+    chrome.runtime.sendMessage({ type: 'getContent' });
+})

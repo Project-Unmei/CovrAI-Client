@@ -8,15 +8,20 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) =>{
         chrome.tabs.sendMessage(tabId, { type: 'NEW' });
     }
 
-    if (tab.url.includes("linkedin.com/jobs") 
+    else if (tab.url.includes("linkedin.com/jobs") 
             && changeInfo.status === 'complete') {
         console.log("LinkedIn Job Positing Page");
         chrome.tabs.sendMessage(tabId, { type: 'NEW' });
     }
 
-    if (tab.url.includes("ca.indeed.com") 
+    else if (tab.url.includes("ca.indeed.com") 
             && changeInfo.status === 'complete') {
         console.log("Indeed Canada Page");
+        chrome.tabs.sendMessage(tabId, { type: 'NEW' });
+    }
+
+    else {
+        console.log("Other Job Website");
         chrome.tabs.sendMessage(tabId, { type: 'NEW' });
     }
 });

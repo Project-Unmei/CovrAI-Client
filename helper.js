@@ -10,6 +10,7 @@ var outPackage = {
     }
 };
 
+
 function format_and_send_data(data) {
     // Formatting final HTTP package
     let xhr = new XMLHttpRequest();
