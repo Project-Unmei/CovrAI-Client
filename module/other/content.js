@@ -19,11 +19,6 @@ function containsKeyword(content, keywords) {
         const { type } = request;
 
 
-        if (type == "getContent") {
-            sendExtracted();
-        }
-
-
         if (type === "NEW") {
             console.log(`${extName} Extension received NEW Message.`);
             const keywords = [

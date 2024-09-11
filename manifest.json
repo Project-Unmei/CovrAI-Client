@@ -23,7 +23,8 @@
   "permissions": [
     "storage",
     "tabs",
-    "webNavigation"
+    "webNavigation",
+    "downloads"
   ],
   "host_permissions": [
     "*://waterlooworks.uwaterloo.ca/*",

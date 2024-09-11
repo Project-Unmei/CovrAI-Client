@@ -25,3 +25,18 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) =>{
         chrome.tabs.sendMessage(tabId, { type: 'NEW' });
     }
 });
+
+chrome.runtime.onMessage.addListener(function(arg, sender, sendResponse){
+    const {type, url, filename} = arg;
+
+    console.log(arg);
+    console.log(type, url, filename);
+
+    chrome.downloads.download({
+        url: url,
+        filename: filename
+    });
+
+    sendResponse("Success");
+
+})

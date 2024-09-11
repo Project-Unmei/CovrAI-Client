@@ -11,10 +11,50 @@ var outPackage = {
 };
 
 
-function format_and_send_data(data) {
+async function format_and_send_data(data, server_url="http://127.0.0.1:6970/api/cv/generate"){
+    try{
+        const response = await fetch(server_url, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'X-API-KEY': 'TESTAPI'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if(!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+
+        const response_json = await response.json();
+        console.log(response_json);
+        const encoded_docx = response_json['DATA']['DOCX'];
+
+        const contentDisposition = response.headers.get('Content-Disposition');
+        let filename = response_json['DATA']['FILE_NAME'] + ".docx";
+
+        const binary_docx = atob(encoded_docx);
+        const byte_docx = new Uint8Array(binary_docx.length);
+        for (let i = 0; i < binary_docx.length; i++){
+            byte_docx[i] = binary_docx.charCodeAt(i);
+        }
+
+        const blob = new Blob([byte_docx], {type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+        const url = URL.createObjectURL(blob);
+        
+        const downloadResponse = await chrome.runtime.sendMessage({type: "DOWNLOAD",url: url, filename: filename});
+        
+        console.log(downloadResponse);
+
+    } catch (error){
+        console.error('Error: ', error);
+    }
+}
+
+function format_and_send_data_old(data) {
     // Formatting final HTTP package
     let xhr = new XMLHttpRequest();
-    let url = "http://127.0.0.1:6969/api/cv/generate";
+    let url = "http://127.0.0.1:6970/api/cv/generate";
     let response;
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -29,10 +69,18 @@ function format_and_send_data(data) {
             binaryData.push(response);
 
             var fileName = `${data.UID}.docx`;
-            var a = document.createElement("a");
-            a.href = window.URL.createObjectURL(new Blob(binaryData));
-            a.download = fileName;
-            a.click();
+
+            var blob = new Blob(binaryData);
+            var url = URL.createObjectURL(blob);
+            chrome.downloads.download({
+                url: url,
+                filename: fileName
+            });
+
+            //var a = document.createElement("a");
+            //a.href = window.URL.createObjectURL(new Blob(binaryData));
+            //a.download = fileName;
+            //a.click();
 
         }
     };

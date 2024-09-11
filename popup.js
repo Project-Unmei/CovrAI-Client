@@ -46,5 +46,7 @@ dpKForm.addEventListener('click', (e) => {
 let extract = document.getElementById('extract');
 
 extract.addEventListener('click', (e) => {
-    chrome.runtime.sendMessage({ type: 'getContent' });
+    chrome.tabs.query({active: true, currentWindow: true}, function (tabs){
+        chrome.tabs.sendMessage(tabs[0].id, { type: 'getContent' });
+    });
 })
