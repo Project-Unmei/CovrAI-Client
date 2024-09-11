@@ -249,11 +249,11 @@ let pageName = "WaterlooWorks";
             data.Position = dashboardHeaderH1.substring(dashboardHeaderH1.indexOf('-') + 1).trim().split(',')[0].split(' - ')[0].split('/')[0];
             data.Company = dashboardHeaderH2.substring(0, dashboardHeaderH2.indexOf(' - ')).trim();
             
-            data.DATA.TITLE = data.Position;
-            data.DATA.COMPANY = data.Company;
-            data.DATA.JOB_SUM = data.Summary;
-            data.DATA.JOB_RESP = data.Responsibilities;
-            data.DATA.JOB_SKILL = data.Skills;
+            data.DATA.USER = []
+
+            data.DATA.JOB.TITLE = data.Position;
+            data.DATA.JOB.COMPANY = data.Company;
+            data.DATA.JOB.SUMMARY = data.Summary + data.Responsibilities + data.Skills;
 
             console.log(data.Position);
             console.log(data.Company);
