@@ -52,11 +52,11 @@ const outPackage = {
             "DESCRIPTION": ""
         },
         "CONFIG": {
+            "TEMPLATE": 0,
             "TONE": 2,
             "SKILLS": [],
             "EXPERIENCES": [],
-            "DATE": formatDate(),
-            "TEMPLATE": 0
+            "DATE": formatDate()
         }
     }
 }
