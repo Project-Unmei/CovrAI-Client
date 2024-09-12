@@ -44,36 +44,26 @@ let pageName = "LinkedIn";
         newButton.onclick = function() {
             console.log(`${extName} CV Generation Click Registered.`);
 
-            // Defining JSON Data Formatting:
-            var outPackage = {
-                "UID": "",
-                "TYPE": "gpt",
-                "DATA": {
-                    "TITLE": "",
-                    "COMPANY": "",
-                    "JOB_SUM": "",
-                    "JOB_RESP": "",
-                    "REQ_SKILL": ""
-                }
-            };
+            var thisOutPackage = outPackage;
             
             let urlArray = window.location.href.split("=");
-            outPackage.UID = urlArray[urlArray.length - 1];
+            thisOutPackage.UID = urlArray[urlArray.length - 1];
 
             let dashboardDiv = document.getElementsByClassName('jobs-search__job-details--wrapper')[0];
             
+
             // Obtaining Company Name
-            outPackage.DATA.COMPANY = document.getElementsByClassName('ember-view link-without-visited-state inline-block t-black')[0]
+            thisOutPackage.DATA.JOB.COMPANY = document.getElementsByClassName('ember-view link-without-visited-state inline-block t-black')[0]
                                               .innerHTML.replace(/[\r\n\t]/g, "").trim();
             
             // Obtaining Job Title
-            outPackage.DATA.TITLE = document.getElementsByClassName('job-details-jobs-unified-top-card__job-title-link')[0]
+            thisOutPackage.DATA.JOB.TITLE = document.getElementsByClassName('job-details-jobs-unified-top-card__job-title-link')[0]
                                             .innerHTML.replace(/[\r\n\t]/g, "").trim().split(" - ")[0];
 
             // Obtaining Job Summary
             let jobSummaryDiv = document.getElementsByClassName('jobs-box__html-content jobs-description-content__text t-14 t-normal jobs-description-content__text--stretch')[0]
                                         .getElementsByTagName('span')[0];
-            outPackage.DATA.JOB_SUM = jobSummaryDiv.textContent.replace(/[\r\n\t]/g, "").trim();
+            thisOutPackage.DATA.JOB.SUMMARY = jobSummaryDiv.textContent.replace(/[\r\n\t]/g, "").trim();
 
             // Obtaining Job Skills
             let skillDiv = document.getElementsByClassName('app-aware-link  job-details-how-you-match__skills-item-subtitle t-14 overflow-hidden');
@@ -88,7 +78,7 @@ let pageName = "LinkedIn";
                 // Deliminating by comma and "and"
                 skillList.push(addSkillDiv[i].innerHTML.split(/, and |, | and /));
             };
-            outPackage.DATA.REQ_SKILL = skillList.join(", ");
+            //outPackage.DATA.REQ_SKILL = skillList.join(", ");
 
             console.log(outPackage);
             format_and_send_data(outPackage);

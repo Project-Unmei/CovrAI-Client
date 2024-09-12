@@ -221,7 +221,7 @@ let pageName = "WaterlooWorks";
 
             //data.DATA.JOB.TITLE = jobPosition;
             //data.DATA.JOB.COMPANY = jobCompany;
-            data.DATA.JOB.SUMMARY = jobSummary + jobResponsibilities + jobSkills;
+            data.DATA.JOB.DESCRIPTION = jobSummary + jobResponsibilities + jobSkills;
 
             console.log(data);
 
