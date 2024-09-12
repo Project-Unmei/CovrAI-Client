@@ -37,29 +37,29 @@
   "content_scripts": [
     {
       "matches": ["https://waterlooworks.uwaterloo.ca/*"],
-      "js": ["helper.js", "module/waterlooworks/content.js"],
+      "js": ["templateUser.js", "helper.js", "module/waterlooworks/content.js"],
       "css": ["module/waterlooworks/content.css"],
       "run_at": "document_end"
     },
     {
       "matches": ["https://www.linkedin.com/jobs/*"],
-      "js": ["helper.js", "module/linkedin/content.js"],
+      "js": ["templateUser.js", "helper.js", "module/linkedin/content.js"],
       "css": ["module/linkedin/content.css"],
       "run_at": "document_idle"
     },
     {
       "matches": ["https://ca.indeed.com/*"],
-      "js": ["helper.js", "module/indeed-ca/content.js"],
+      "js": ["templateUser.js", "helper.js", "module/indeed-ca/content.js"],
       "css": ["module/indeed-ca/content.css"],
       "run_at": "document_idle"
     },
     {
       "matches":["<all_urls>"],
-      "js": ["helper.js", "module/other/content.js"],
+      "js": ["templateUser.js", "helper.js", "module/other/content.js"],
       "css": ["module/other/content.css"],
       "run_at": "document_idle"
 
     }
   ],
-  "author": "me@leochai.com"
+  "author": "me@leochai.com is crazy"
 }

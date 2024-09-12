@@ -111,39 +111,7 @@ let pageName = "WaterlooWorks";
 
 
 
-            var data = {
-                "UID": "",
-                "TYPE": "gpt",
-                "DATA": {
-                    "TITLE": "",
-                    "COMPANY": "",
-                    "JOB_SUM": "",
-                    "JOB_RESP": "",
-                    "JOB_SKILL": ""
-                },
-                "WorkTerm": "",
-                "JobType": "",
-                "JobTitle": "",
-                "Openings": "",
-                "Category": "",
-                "Level": "",
-                "Region": "",
-                "Address1": "",
-                "Address2": "",
-                "City": "",
-                "Province": "",
-                "PostalCode": "",
-                "Country": "",
-                "Duration": "",
-                "Requirements": "",
-                "Summary": "",
-                "Responsibilities": "",
-                "Skills": "",
-                "Compensation": "",
-                "Degrees": "",
-                "Position": "",
-                "Company": "",
-            };
+            var data = outPackage;
 
             let JobPostingInformationBody = document.getElementsByClassName('panel-body')[0];
             let JobPostingInformationTable = JobPostingInformationBody.children[0];
@@ -171,67 +139,67 @@ let pageName = "WaterlooWorks";
                 childValue = childValue.replace(/&nbsp;/g, "");
                 childValue = childValue.trim();
                 console.log(childValue);
-
+                
                 switch (childField) {
                     case "Work Term:":
-                        data.WorkTerm = childValue;
+                        jobWorkTerm = childValue;
                         break;
                     case "Job Type:":
-                        data.JobType = childValue;
+                        jobJobType = childValue;
                         break;
                     case "Job Title:":
-                        data.JobTitle = childValue;
+                        jobJobTitle = childValue;
                         break;
                     case "Number of Job Openings:":
-                        data.Openings = childValue;
+                        jobOpenings = childValue;
                         break;
                     case "Job Category (NOC):":
-                        data.Category = childValue;
+                        jobCategory = childValue;
                         break;
                     case "Level:":
-                        data.Level = childValue;
+                        jobLevel = childValue;
                         break;
                     case "Region:":
-                        data.Region = childValue;
+                        jobRegion = childValue;
                         break;
                     case "Job - Address Line One:":
-                        data.Address1 = childValue;
+                        jobAddress1 = childValue;
                         break;
                     case "Job - Address Line Two:":
-                        data.Address2 = childValue;
+                        jobAddress2 = childValue;
                         break;
                     case "Job - City:":
-                        data.City = childValue;
+                        jobCity = childValue;
                         break;
                     case "Job - Province / State:":
-                        data.Province = childValue;
+                        jobProvince = childValue;
                         break;
                     case "Job - Postal Code / Zip Code (X#X #X#):":
-                        data.PostalCode = childValue;
+                        jobPostalCode = childValue;
                         break;
                     case "Job - Country:":
-                        data.Country = childValue;
+                        jobCountry = childValue;
                         break;
                     case "Work Term Duration:":
-                        data.Duration = childValue;
+                        jobDuration = childValue;
                         break;
                     case "Special Job Requirements:":
-                        data.Requirements = childValue;
+                        jobRequirements = childValue;
                         break;
                     case "Job Summary:":
-                        data.Summary = childValue;
+                        jobSummary = childValue;
                         break;
                     case "Job Responsibilities:":
-                        data.Responsibilities = childValue;
+                        jobResponsibilities = childValue;
                         break;
                     case "Required Skills:":
-                        data.Skills = childValue;
+                        jobSkills = childValue;
                         break;
                     case "Compensation and Benefits Information:":
-                        data.Compensation = childValue;
+                        jobCompensation = childValue;
                         break;
                     case "Targeted Degrees and Disciplines:":
-                        data.Degrees = childValue;
+                        jobDegrees = childValue;
                         break;
                 }
             }
@@ -246,17 +214,16 @@ let pageName = "WaterlooWorks";
             dashboardHeaderH2 = dashboardHeaderH2.replace(/[\r\n\t]/g, "");
 
             data.UID = dashboardHeaderH1.substring(0, dashboardHeaderH1.indexOf('-')).trim();
-            data.Position = dashboardHeaderH1.substring(dashboardHeaderH1.indexOf('-') + 1).trim().split(',')[0].split(' - ')[0].split('/')[0];
-            data.Company = dashboardHeaderH2.substring(0, dashboardHeaderH2.indexOf(' - ')).trim();
+            data.DATA.JOB.TITLE = dashboardHeaderH1.substring(dashboardHeaderH1.indexOf('-') + 1).trim().split(',')[0].split(' - ')[0].split('/')[0];
+            data.DATA.JOB.COMPANY = dashboardHeaderH2.substring(0, dashboardHeaderH2.indexOf(' - ')).trim();
             
-            data.DATA.USER = []
+            // data.DATA.USER = []
 
-            data.DATA.JOB.TITLE = data.Position;
-            data.DATA.JOB.COMPANY = data.Company;
-            data.DATA.JOB.SUMMARY = data.Summary + data.Responsibilities + data.Skills;
+            //data.DATA.JOB.TITLE = jobPosition;
+            //data.DATA.JOB.COMPANY = jobCompany;
+            data.DATA.JOB.SUMMARY = jobSummary + jobResponsibilities + jobSkills;
 
-            console.log(data.Position);
-            console.log(data.Company);
+            console.log(data);
 
             format_and_send_data(data);
         };

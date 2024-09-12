@@ -1,4 +1,4 @@
-var outPackage = {
+/*var outPackage = {
     "UID": "",
     "TYPE": "gpt",
     "DATA": {
@@ -8,8 +8,37 @@ var outPackage = {
         "JOB_RESP": "",
         "REQ_SKILL": ""
     }
-};
+};*/
 
+var outPackage = {
+    "UID": "",
+    "TYPE": "gpt",
+    "DATA": {
+        "USER": {
+            "NAME": "",
+            "TITLE": "",
+            "EMAIL": "",
+            "PHONE": "",
+            "LOCATION": "",
+            "EDUCATION": "",
+            "STUDY": "",
+            "RESUME": ""
+        },
+        "JOB": {
+            "TITLE": "",
+            "COMPANY": "",
+            "SUMMARY": ""
+        },
+        "TONE": 3,
+        "SKILLS": []
+    }
+}
+
+if (typeof templateUser !== 'undefined'){
+    outPackage.DATA.USER = templateUser;
+}
+
+console.log(outPackage);
 
 async function format_and_send_data(data, server_url="http://127.0.0.1:6970/api/cv/generate"){
     try{
