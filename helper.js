@@ -56,7 +56,8 @@ const outPackage = {
             "SKILLS": [],
             "EXPERIENCES": [],
             "DATE": formatDate(),
-            "TEMPLATE": 0
+            "TEMPLATE": 0,
+            "FILETYPE": "DOCX"
         }
     }
 }

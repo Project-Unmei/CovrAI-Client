@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Covr AI",
+  "name": "Cover Letter Generator for Waterloo Works",
   "version": "0.0.1",
 
   "action": {
@@ -13,8 +13,7 @@
     },
     "default_title": "CLG for WW"
   },
-  "description": "This extension works with CovrAI client and website to collect job info to avoid manual data entry on the CovrAI page.",
-  "short description": "Make entering job description for CovrAI Easier!",
+  "description": "CV Generator for WaterlooWorks, Linkedin and More.",
   "icons": {
     "16": "/images/icon16.png",
     "32": "/images/icon32.png",
@@ -53,6 +52,13 @@
       "js": ["templateUser.js", "helper.js", "module/indeed-ca/content.js"],
       "css": ["module/indeed-ca/content.css"],
       "run_at": "document_idle"
+    },
+    {
+      "matches":["<all_urls>"],
+      "js": ["templateUser.js", "helper.js", "module/other/content.js"],
+      "css": ["module/other/content.css"],
+      "run_at": "document_idle"
+
     }
   ],
   "author": "me@leochai.com is crazy"
