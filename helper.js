@@ -52,6 +52,7 @@ const outPackage = {
             "DESCRIPTION": ""
         },
         "CONFIG": {
+            "TEMPLATE": 0,
             "TONE": 2,
             "SKILLS": [],
             "EXPERIENCES": [],
