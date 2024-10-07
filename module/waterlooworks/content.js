@@ -88,28 +88,6 @@ let pageName = "WaterlooWorks";
         newButton.onclick = function() {
             console.log('button clicked');
 
-            let JobPostingInformation = [   "Work Term:", 
-                                            "Job Type:", 
-                                            "Job Title:",
-                                            "Number of Job Openings:", 
-                                            "Job Category (NOC):", 
-                                            "Level:", 
-                                            "Region:", 
-                                            "Job - Address Line One:", 
-                                            "Job - Address Line Two:",
-                                            "Job - City:",
-                                            "Job - Province / State:",
-                                            "Job - Postal Code / Zip Code (X#X #X#):",
-                                            "Job - Country:",
-                                            "Work Term Duration:",
-                                            "Special Job Requirements:",
-                                            "Job Summary:",
-                                            "Job Responsibilities:",
-                                            "Required Skills:",
-                                            "Compensation and Benefits Information:",
-                                            "Targeted Degrees and Disciplines:"];            
-
-
 
             var data = outPackage;
 
@@ -225,7 +203,7 @@ let pageName = "WaterlooWorks";
 
             console.log(data);
 
-            format_and_send_data(data);
+            generateFromData(data);
         };
 
         dashboardHeaderDiv.appendChild(newButton);

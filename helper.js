@@ -11,7 +11,7 @@
 };*/
 
 
-function formatDate() {
+function dateStr() {
     const date = new Date();
     const day = date.getDate();
     const month = date.toLocaleString('default', { month: 'long' });
@@ -33,8 +33,6 @@ function formatDate() {
 
 
 const outPackage = {
-    "UID": "",
-    "TYPE": "gpt",
     "DATA": {
         "USER": {
             "NAME": "",
@@ -52,13 +50,11 @@ const outPackage = {
             "DESCRIPTION": ""
         },
         "CONFIG": {
-            "TEMPLATE": 0,
+            "TEMPLATE": '67035b7370e68c097ab24828',
             "TONE": 2,
             "SKILLS": [],
             "EXPERIENCES": [],
-            "DATE": formatDate(),
-            "TEMPLATE": 0,
-            "FILETYPE": "DOCX"
+            "DATE": dateStr()
         }
     }
 }
@@ -71,13 +67,50 @@ if (typeof templateUser !== 'undefined'){
 
 console.log(outPackage);
 
-async function format_and_send_data(data, server_url="http://127.0.0.1:6970/api/cv/generate"){
+async function getCookie(url, name){ 
+    return await chrome.runtime.sendMessage({type: "GETTOKEN", url: "http://localhost", name: "authorization"});
+}
+
+async function generateFromData(data) {
+    chrome.runtime.sendMessage({
+        type: "GENERATE",
+        url: "http://localhost", 
+        name: "authorization",
+        serverUrl: "http://127.0.0.1:80/api/generate",
+        data: data
+    }).then((response) => {
+        console.log(response);
+
+        const res = response['response'];
+        console.log(res);
+        const byte_docx = response['byte_docx'];
+        const filename = response['filename'];
+
+        const blob = new Blob([byte_docx], {type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+        const url = window.URL.createObjectURL(blob);
+        
+        chrome.runtime.sendMessage({type: "DOWNLOAD",url: url, filename: filename}).then((downloadResponse) => {
+            console.log(downloadResponse);
+        });
+        
+    });
+    
+            
+        
+    
+    
+
+}
+
+async function format_and_send_data(data, server_url="http://127.0.0.1:80/api/generate"){
     try{
+        token = await getCookie()
+        console.log("token is ", token);
         const response = await fetch(server_url, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'X-API-KEY': 'TESTAPI'
+                'Authorization': token
             },
             body: JSON.stringify(data)
         });

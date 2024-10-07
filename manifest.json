@@ -25,7 +25,10 @@
     "storage",
     "tabs",
     "webNavigation",
-    "downloads"
+    "downloads",
+    "offscreen",
+    "cookies",
+    "http://localhost"
   ],
   "host_permissions": [
     "*://waterlooworks.uwaterloo.ca/*",
