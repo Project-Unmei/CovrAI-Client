@@ -99,7 +99,23 @@ function containsKeyword(content, keywords) {
         //const jobInfo = await jobInfoRaw.json();
         
     }
+
+    /*
+    const sendExtracted = async () => {
+
+        console.log("sendExtraced called: sending extracted");
     
+        const data = {"DATA": {"JOB": {
+            "TITLE": "",
+            "COMPANY": "",
+            "DESCRIPTION": document.body.innerText
+        }}};
+
+        return await generateFromData(data).then(()=>{
+            document.getElementById('AutoCV-action-button').disabled = false;
+        });
+        
+    }*/
 
     const addPrompt = () => {
         console.log("creating prompt");

@@ -218,7 +218,7 @@ chrome.runtime.onMessage.addListener(function(arg, sender, sendResponse){
                 const encoded_docx = resJson.DATA.FILE.base64;
                 
                 const contentDisposition = response.headers.get('Content-Disposition');
-                const filename = resJson['DATA']['FILE_NAME'] + ".docx";
+                const filename = "CV-" + resJson['DATA']['FILE_NAME'] + ".docx";
 
                 const binary_docx = atob(encoded_docx);
                 const byte_docx = new Uint8Array(binary_docx.length);
