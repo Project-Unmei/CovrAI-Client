@@ -78,7 +78,7 @@ let pageName = "WaterlooWorks";
         let dashboardHeaderDiv = dashboardHeader.getElementsByTagName('div')[0];
 
         let newButton = document.createElement('button');
-        newButton.innerHTML = 'Generate Cover Letter';
+        newButton.innerHTML = 'OneClick Cover Letter 📃';
         newButton.id = 'CVGenButton';
         newButton.classList.add('btn__default--text');
         newButton.classList.add('btn--default');
@@ -87,6 +87,8 @@ let pageName = "WaterlooWorks";
 
         newButton.onclick = function() {
             console.log('button clicked');
+
+            newButton.disabled = true;
 
 
             var data = outPackage;
@@ -191,7 +193,7 @@ let pageName = "WaterlooWorks";
             dashboardHeaderH1 = dashboardHeaderH1.replace(/[\r\n\t]/g, "");
             dashboardHeaderH2 = dashboardHeaderH2.replace(/[\r\n\t]/g, "");
 
-            data.UID = dashboardHeaderH1.substring(0, dashboardHeaderH1.indexOf('-')).trim();
+            //data.UID = dashboardHeaderH1.substring(0, dashboardHeaderH1.indexOf('-')).trim();
             data.DATA.JOB.TITLE = dashboardHeaderH1.substring(dashboardHeaderH1.indexOf('-') + 1).trim().split(',')[0].split(' - ')[0].split('/')[0];
             data.DATA.JOB.COMPANY = dashboardHeaderH2.substring(0, dashboardHeaderH2.indexOf(' - ')).trim();
             
@@ -203,7 +205,9 @@ let pageName = "WaterlooWorks";
 
             console.log(data);
 
-            generateFromData(data);
+            generateFromData(data).then(()=>{
+                newButton.disabled = false;
+            });
         };
 
         dashboardHeaderDiv.appendChild(newButton);

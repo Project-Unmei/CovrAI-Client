@@ -46,16 +46,11 @@
       "run_at": "document_end"
     },
     {
-      "matches": ["https://www.linkedin.com/jobs/*"],
-      "js": ["templateUser.js", "helper.js", "module/linkedin/content.js"],
-      "css": ["module/linkedin/content.css"],
+      "matches":["<all_urls>"],
+      "js": ["templateUser.js", "helper.js", "module/other/content.js"],
+      "css": ["module/other/content.css"],
       "run_at": "document_idle"
-    },
-    {
-      "matches": ["https://ca.indeed.com/*"],
-      "js": ["templateUser.js", "helper.js", "module/indeed-ca/content.js"],
-      "css": ["module/indeed-ca/content.css"],
-      "run_at": "document_idle"
+
     }
   ],
   "author": "me@leochai.com is crazy"

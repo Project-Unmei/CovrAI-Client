@@ -12,22 +12,29 @@ let pageName = "forAll";
     chrome.runtime.onMessage.addListener((request, sender, response) => {
 
         console.log(`${extName} Extension loaded and customized for \"${pageName}\"`);
+
+        console.log("request is", request);
+
         const { type } = request;
 
 
         if (type == "getContent") {
+            console.log("getContent");
             sendExtracted();
         }
     });
 
-    const sendExtracted = () => {
+    const sendExtracted = async () => {
 
         console.log("sending extracted");
     
-        data = {"type": 2,
-            "content": document.body.innerText};
-    
-        format_and_send_data(data);
+        const data = {"DATA": {
+            "TARGET": document.body.innerText
+        }};
+        
+        const jobInfo = await covrAiFetch(data, 'POST', 'http://localhost')
+
+        format_and_send_data(jobInfo);
     }
 
 })();

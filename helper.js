@@ -34,72 +34,81 @@ function dateStr() {
 
 const outPackage = {
     "DATA": {
-        "USER": {
-            "NAME": "",
-            "TITLE": "",
-            "EMAIL": "",
-            "PHONE": "",
-            "LOCATION": "",
-            "EDUCATION": "",
-            "STUDY": "",
-            "RESUME": ""
-        },
         "JOB": {
             "TITLE": "",
             "COMPANY": "",
             "DESCRIPTION": ""
-        },
-        "CONFIG": {
-            "TEMPLATE": '67035b7370e68c097ab24828',
-            "TONE": 2,
-            "SKILLS": [],
-            "EXPERIENCES": [],
-            "DATE": dateStr()
         }
     }
 }
 
 
-
+/*
 if (typeof templateUser !== 'undefined'){
     outPackage.DATA.USER = templateUser;
-}
+}*/
 
 console.log(outPackage);
 
-async function getCookie(url, name){ 
-    return await chrome.runtime.sendMessage({type: "GETTOKEN", url: "http://localhost", name: "authorization"});
+async function getCookie(name = "authorization", url = "http://localhost"){ 
+    console.log(`fetching cookie from url: ${url}, name: ${name}`);
+    return await chrome.runtime.sendMessage({type: "GETCOOKIE", url: url, name: name});
 }
 
 async function generateFromData(data) {
-    chrome.runtime.sendMessage({
+    const response = await chrome.runtime.sendMessage({
         type: "GENERATE",
         url: "http://localhost", 
         name: "authorization",
-        serverUrl: "http://127.0.0.1:80/api/generate",
+        serverUrl: "http://localhost:80/ext/generate",
         data: data
-    }).then((response) => {
-        console.log(response);
+    });
+    console.log("GENERATE response is: ",response);
+    /*
+    const res = await response['response'];
+    console.log(res);
+    const byte_docx = await response['byte_docx'];
+    const filename = await response['filename'];
 
-        const res = response['response'];
-        console.log(res);
-        const byte_docx = response['byte_docx'];
-        const filename = response['filename'];
+    console.log("Generate response has", res, byte_docx, filename);
 
-        const blob = new Blob([byte_docx], {type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
-        const url = window.URL.createObjectURL(blob);
-        
-        chrome.runtime.sendMessage({type: "DOWNLOAD",url: url, filename: filename}).then((downloadResponse) => {
-            console.log(downloadResponse);
+    const blob = new Blob([byte_docx], {type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+    const url = URL.createObjectURL(blob);
+    
+    const downloadResponse = await chrome.runtime.sendMessage({type: "DOWNLOAD",url: url, filename: filename});
+    console.log(downloadResponse);
+    */
+
+    return await response;
+}
+
+async function covrAIFetch(data, method, serverUrl, callback = (res)=>{}){
+    try{
+        token = await getCookie(name = "authorization", url = "http://localhost");
+        console.log("token is", token);
+        const response = await fetch(serverUrl, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token.value
+            },
+            body: JSON.stringify(data)
+        }).then((response) => {
+            if(response.ok){
+                //console.log(response.json());
+                //callback(response);
+                return response.json();
+            }
+        }).then((data) =>{
+            console.log(data);
+            console.log(data);
+            callback(data);
+            return data;
         });
         
-    });
-    
-            
-        
-    
-    
-
+    } catch (error) {
+        console.error('Error', error);
+    }
 }
 
 async function format_and_send_data(data, server_url="http://127.0.0.1:80/api/generate"){

@@ -1,4 +1,4 @@
-let newSkillForm = document.getElementById('newSkillForm');
+/*let newSkillForm = document.getElementById('newSkillForm');
 
 newSkillForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -41,12 +41,31 @@ dpKForm.addEventListener('click', (e) => {
         document.getElementById("dpK").val("");
     });
 })
+*/
 
-
-let extract = document.getElementById('extract');
+let extract = document.getElementById('AutoCV-action-button');
+let pin = document.getElementById('AutoCV-pin-button');
 
 extract.addEventListener('click', (e) => {
-    chrome.tabs.query({active: true, currentWindow: true}, function (tabs){
-        chrome.tabs.sendMessage(tabs[0].id, { type: 'getContent' });
+    console.log('extracting from arbitrary page');
+    chrome.tabs.query({active: true, currentWindow: true}, async function (tabs){
+        response = await chrome.tabs.sendMessage(tabs[0].id, { type: 'getContent' });
     });
 })
+
+pin.addEventListener('click', (e) => {
+    console.log('opening side menu');
+    chrome.tabs.query({active: true, currentWindow: true}, function (tabs){
+        chrome.tabs.sendMessage(tabs[0].id, { type: 'showButton' });
+    });
+})
+
+/*
+let test = document.getElementById('test');
+extract.addEventListener('click', async (e) => {
+    console.log("Test button clicked");
+    response = await chrome.runtime.sendMessage({type: "GETCOOKIE", url: "http://localhost", name: "authorization"})
+    console.log(response);
+    //console.log(getCookie('userFormData'));
+});
+*/
