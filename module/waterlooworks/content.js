@@ -71,6 +71,8 @@ let pageName = "WaterlooWorks";
     }
 
     const addGenButton = () => {
+        document.body.innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">`;
+
         const checkGenButton = document.getElementById('postingsTableDiv');
         if(checkGenButton) return;
 
@@ -84,11 +86,14 @@ let pageName = "WaterlooWorks";
         newButton.classList.add('btn--default');
         newButton.type = 'button';
         //newButton.setAttribute('onClick', 'javascript: GenerateCoverLetter()');
+        newButton.setAttribute("style", "transition:width 0.3s;width: 200px;height: 36px;");
 
         newButton.onclick = function() {
             console.log('button clicked');
 
             newButton.disabled = true;
+            newButton.style.width = "210px";
+            newButton.innerHTML = '<i class="fa fa-circle-o-notch fa-spin"></i> OneClick Cover Letter 📃';
 
 
             var data = outPackage;
@@ -207,6 +212,8 @@ let pageName = "WaterlooWorks";
 
             generateFromData(data).then(()=>{
                 newButton.disabled = false;
+                newButton.style.width = "200px";
+                newButton.innerHTML = 'OneClick Cover Letter 📃';
             });
         };
 

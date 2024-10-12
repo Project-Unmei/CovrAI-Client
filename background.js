@@ -178,7 +178,10 @@ chrome.runtime.onMessage.addListener(function(arg, sender, sendResponse){
                 'url': url,
                 'name': name
             }, async function (token) {
-                console.log("backend got token: ", token);
+                console.log("backend got token: ", {
+                    'Content-Type': 'application/json',
+                    'Authorization': token.value
+                });
                 const response = await fetch(serverUrl, {
                     method: "POST",
                     headers: {
@@ -245,6 +248,36 @@ chrome.runtime.onMessage.addListener(function(arg, sender, sendResponse){
             });
         })();
         
+        return true;
+    } else if (arg.type == "GETINFO") {
+        (async () => {
+            const {type, url, name, serverUrl, data} = arg;
+            token = chrome.cookies.get({
+                'url': url,
+                'name': name
+            }, async function (token) {
+                console.log("backend got token: ", {
+                    'Content-Type': 'application/json',
+                    'Authorization': token.value
+                });
+                const response = await fetch(serverUrl, {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token.value
+                    },
+                    body: JSON.stringify(data)
+                }).then((response) => {
+                    if(response.ok){
+                        return response.json();
+                    }
+                }).then((data) =>{
+                    console.log(data);
+                    sendResponse(data);
+                });
+
+            });
+        })();
         return true;
     }
 });
