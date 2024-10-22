@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Covr AI",
-  "version": "0.0.1",
+  "name": "OneClick",
+  "version": "1.0",
 
   "action": {
     "default_popup": "popup.html",
@@ -13,7 +13,7 @@
     },
     "default_title": "CLG for WW"
   },
-  "description": "This extension works with CovrAI client and website to collect job info to avoid manual data entry on the CovrAI page.",
+  "description": "OneClick works with covr-ai.com to stream line the job application process.",
   "short description": "Make entering job description for CovrAI Easier!",
   "icons": {
     "16": "/images/icon16.png",
@@ -22,13 +22,10 @@
     "128": "/images/icon128.png"
   },
   "permissions": [
-    "storage",
     "tabs",
-    "webNavigation",
     "downloads",
     "offscreen",
-    "cookies",
-    "http://localhost"
+    "cookies"
   ],
   "host_permissions": [
     "*://waterlooworks.uwaterloo.ca/*",

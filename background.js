@@ -8,7 +8,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) =>{
         console.log("WaterlooWorks Job Positing Page");
         chrome.tabs.sendMessage(tabId, { type: 'NEW' });
     }
-
+/*
     else if (tab.url.includes("linkedin.com/jobs") 
             && changeInfo.status === 'complete') {
         console.log("LinkedIn Job Positing Page");
@@ -19,7 +19,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) =>{
             && changeInfo.status === 'complete') {
         console.log("Indeed Canada Page");
         chrome.tabs.sendMessage(tabId, { type: 'NEW' });
-    }
+    }*/
 
     else {
         console.log("Other Job Website");
@@ -258,7 +258,9 @@ chrome.runtime.onMessage.addListener(function(arg, sender, sendResponse){
             }, async function (token) {
                 console.log("backend got token: ", {
                     'Content-Type': 'application/json',
-                    'Authorization': token.value
+                    'Authorization': token.value,
+                    'body': JSON.stringify(data),
+                    'url': serverUrl
                 });
                 const response = await fetch(serverUrl, {
                     method: "POST",
@@ -274,6 +276,8 @@ chrome.runtime.onMessage.addListener(function(arg, sender, sendResponse){
                 }).then((data) =>{
                     console.log(data);
                     sendResponse(data);
+                }).catch(function (err) {
+                    console.log(err);
                 });
 
             });

@@ -87,7 +87,6 @@ let pageName = "WaterlooWorks";
         newButton.type = 'button';
         //newButton.setAttribute('onClick', 'javascript: GenerateCoverLetter()');
         newButton.setAttribute("style", "transition:width 0.3s;width: 200px;height: 36px;");
-
         newButton.onclick = function() {
             console.log('button clicked');
 

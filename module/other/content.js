@@ -157,8 +157,7 @@ function containsKeyword(content, keywords) {
             --shade-2: #EAEBEA;
             --shade-3: #8F908F;
             --shade-4: #252524;
-            
-            font-size: 16px;
+        
         }
 
         @media (prefers-color-scheme: dark) {
@@ -176,11 +175,6 @@ function containsKeyword(content, keywords) {
                 --shade-4: #FFFFFF;
             }
 
-            body {
-                background-color: var(--shade-1);
-                font-weight: 400;
-                font-family: 'Noto Serif', sans-serif;
-            }
         }
 
         #AutoCV-container {
@@ -194,13 +188,13 @@ function containsKeyword(content, keywords) {
             align-items: center;
             justify-content: space-between;
             z-index: 9999999;
-            height: 2.4rem;
+            height: 38.4px;
             transition: all 0.2s cubic-bezier(.67,0,.39,1);
         }
 
         AutoCVh1 {
             font-family: 'Noto Serif', sans-serif;
-            font-size: 1.2rem;
+            font-size: 19.2px;
             font-weight: 400;
             color: var(--shade-4);
             margin: 0;
@@ -209,7 +203,7 @@ function containsKeyword(content, keywords) {
 
         AutoCVh2 {
             font-family: 'Noto Sans', sans-serif;
-            font-size: 1rem;
+            font-size: 16px;
             font-weight: 600;
             color: var(--shade-4);
             margin: 0;
@@ -217,7 +211,7 @@ function containsKeyword(content, keywords) {
 
         AutoCVh3 {
             font-family: 'Noto Sans', sans-serif;
-            font-size: .8rem;
+            font-size: 12.8px;
             font-weight: 400;
             color: var(--shade-3);
             margin: 0;
@@ -226,7 +220,7 @@ function containsKeyword(content, keywords) {
         AutoCVh4 {
             text-align: right;
             font-family: 'Noto Sans', sans-serif;
-            font-size: .6rem;
+            font-size: 9.6px;
             font-weight: 400;
             color: var(--shade-3);
             margin: 0;
@@ -251,24 +245,16 @@ function containsKeyword(content, keywords) {
         AutoCVbutton, #AutoCV-action-button{
             background-color: var(--shade-1);
             color: var(-);
-            font-size: 1rem;
+            font-size: 16px;
             font-weight: 700;
-            padding: .5rem 1rem;
-            border-radius: 0.3125rem;
+            padding: 8px 16px;
+            border-radius: 5px;
             cursor: pointer;
             -webkit-user-select: none; /* Safari */
             -ms-user-select: none; /* IE 10 and IE 11 */
             user-select: none; /* Standard syntax */
             border: 1px solid var(--shade-2) !important;
-            box-shadow: 0 0 .4rem 0 #0003;
-        }
-
-        .AutoCV-button {
-            width: 100%;
-            box-shadow: 0 0 .4rem 0rem rgba(0, 0, 0, 0.2);
-            color: var(--palette-blue-2) !important;
-            background: var(--shade-1) !important;
-            border: 1px solid var(--shade-2) !important;
+            box-shadow: 0 0 4px 0 #0003;
         }
 
         #AutoCV-pull-tab{
@@ -280,7 +266,7 @@ function containsKeyword(content, keywords) {
             align-items: center;
             justify-content: left;
             z-index: 9999998;
-            height: 2.4rem;
+            height: 38.4px;
         }
 
         #AutoCV-prompt-content{
@@ -301,14 +287,14 @@ function containsKeyword(content, keywords) {
             align-items: center;
             justify-content: left;
             height: 100%;
-            margin-right: 0.5rem;
+            margin-right: 8px;
         }
         #AutoCV-prompt-head-right{
             display: flex;
             align-items: center;
             justify-content: flex-end;
             height: 100%;    
-            margin-left: 0.5rem;        
+            margin-left: 8px;        
         }
 
         #AutoCV-prompt-head{
@@ -402,11 +388,11 @@ function containsKeyword(content, keywords) {
             sendExtracted();
         });
     
-    
-        // Append elements to the body
-        document.body.appendChild(promptContainer);
-        document.body.appendChild(loading);
-        document.head.appendChild(style);
+        document.documentElement.append(promptContainer);
+        document.documentElement.append(loading);
+        document.head.append(style);
     };
+
+        
 
 })();
