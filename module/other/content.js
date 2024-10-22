@@ -70,7 +70,31 @@ function containsKeyword(content, keywords) {
         }
     });
 
+
     const sendExtracted = async () => {
+
+        console.log("sendExtraced called: sending extracted");
+    
+        const data = {"DATA": {
+            "JOB": {
+                "TITLE": "",
+                "COMPANY": "",
+                "DESCRIPTION": document.body.innerText
+            }
+        }};
+    
+        const response = await generateFromData(data).then((response)=>{
+            console.log(response);
+            document.getElementById('AutoCV-action-button').disabled = false;
+            document.getElementById('Covr-AI-Loading-Container').style.display = 'none';
+        });
+
+        return await response
+        
+    }
+
+    /*
+    const sendExtractedOld = async () => {
 
         console.log("sendExtraced called: sending extracted");
     
@@ -87,6 +111,7 @@ function containsKeyword(content, keywords) {
         return await response
         
     }
+    */
 
     /*
     const sendExtracted = async () => {
