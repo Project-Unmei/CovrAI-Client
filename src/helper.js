@@ -1,14 +1,4 @@
-/*var outPackage = {
-    "UID": "",
-    "TYPE": "gpt",
-    "DATA": {
-        "TITLE": "",
-        "COMPANY": "",
-        "JOB_SUM": "",
-        "JOB_RESP": "",
-        "REQ_SKILL": ""
-    }
-};*/
+import {jwtDecode} from "jwt-decode";
 
 
 function dateStr() {
@@ -32,7 +22,7 @@ function dateStr() {
 }
 
 
-const outPackage = {
+var outPackage = {
     "DATA": {
         "JOB": {
             "TITLE": "",
@@ -42,11 +32,17 @@ const outPackage = {
     }
 }
 
-
-/*
-if (typeof templateUser !== 'undefined'){
-    outPackage.DATA.USER = templateUser;
-}*/
+async function cookieData() {
+    const token = await getCookie();
+    const value = await token.value;
+    console.log("token is: ", await token);
+    if(token.value != undefined){
+        const decoded = await jwtDecode(value);
+        return await decoded;
+    } else {
+        return undefined;
+    }
+}
 
 console.log(outPackage);
 
@@ -82,14 +78,14 @@ async function generateFromHTML(data) {
     const jobCompany= await response.DATA.JOB.COMPANY;
     const jobDescription = await response.DATA.JOB.DESCRIPTION;
 
-    const package = outPackage;
-    package.DATA.JOB.COMPANY = await jobCompany;
-    package.DATA.JOB.TITLE = await jobTitle;
-    package.DATA.JOB.DESCRIPTION = await jobDescription;
+    const payload = outPackage;
+    payload.DATA.JOB.COMPANY = await jobCompany;
+    payload.DATA.JOB.TITLE = await jobTitle;
+    payload.DATA.JOB.DESCRIPTION = await jobDescription;
 
-    console.log(`out package becomes:`, outPackage);
+    console.log(`out package becomes:`, payload);
     
-    const newResponse =  await generateFromData(await package);
+    const newResponse =  await generateFromData(await payload);
     return newResponse;
 }
 
@@ -142,3 +138,11 @@ function waitForElm(selector) {
         });
     });
 }
+
+window.dateStr = dateStr;
+window.outPackage = outPackage;
+window.getCookie = getCookie;
+window.generateFromData = generateFromData;
+window.covrAIFetch = covrAIFetch;
+window.waitForElm = waitForElm;
+window.cookieData = cookieData;

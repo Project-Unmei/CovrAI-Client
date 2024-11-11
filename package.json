@@ -1,0 +1,45 @@
+{
+  "name": "covrai-oneclick",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "extension-cli": "^1.2.4",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "eslintIgnore": [
+    "test/**/*"
+  ],
+  "scripts": {
+    "start": "xt-build -e dev -w",
+    "build": "xt-build -e prod",
+    "clean": "xt-clean",
+    "docs": "xt-docs",
+    "test": "xt-test",
+    "coverage": "nyc --reporter=lcov npm run test"
+  },
+  "xtbuild": {
+    "manifest": "./src/manifest.json",
+    "js_bundles": [
+      {
+        "name": "helper",
+        "src": "./src/helper.js"
+      }
+    ],
+    "assets": [
+      "./assets/**/*"
+    ],
+    "copyAsIs": [
+      "./src/module/**/*",
+      "./src/background.js",
+      "./src/offscreen.js",
+      "./src/popup.css",
+      "./src/popup.js"
+    ]
+  }
+}
